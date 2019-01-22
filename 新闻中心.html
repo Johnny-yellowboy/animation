@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      li {
+        height: 30px;
+        line-height: 30px;
+      }
+      a {
+        text-decoration: none;
+        color: lightslategrey;
+      }
+      .news {
+        width: 100%;
+        height: 210px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="news">
+      <ul>
+        <li><a href="http://www.baidu.com" target="_blank">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">bbbbbbbbbbbbbbbbbbbbbbbbb</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">ccccccccccccccccccccccccccccccccccc</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">ddddddddddddddddddddddddddddddddddddddddddd</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">eeeeeeeeeeeeeeeeeeeeeee</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">ffffffffffffffffffffffffffffffff</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">gggggggggggggggggggggggggggggg</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</a></li>
+        <li><a href="http://www.baidu.com" target="_blank">jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</a></li>
+      </ul>
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+      // $(function() {
+      //   setInterval(function() {
+      //     $('ul').animate(
+      //       {
+      //         marginTop: '-30px'
+      //       },
+      //       'slow',
+      //       function() {
+      //         $(this).css({marginTop:'0px'}).find('li:first').appendTo('ul');
+      //       }
+      //     )
+      //   }, 1000)
+      // })
+      $(function () {
+        var scrollH = $('ul li').height()
+        console.log(scrollH)
+
+        setInterval(() => {
+          $('ul').animate({marginTop: -scrollH + 'px'}, 'slow', () => {
+              $('ul')
+                .css({ marginTop: '0px' })
+                .find('li:first')
+                .appendTo('ul')
+            }
+          )
+        }, 1000)
+      })
+    </script>
+  </body>
+</html>
