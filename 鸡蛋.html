@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  html {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(#CCC, #222);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.title {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  margin-bottom: 14vw;
+  text-align: center;
+  font-weight: 100;
+  font-size: 3vw;
+  color: #FFF;
+  opacity: 0.25;
+}
+
+.egg-wrapper + .title::before {
+  content: "css egg";
+}
+
+.egg-wrapper + .egg-wrapper + .title::before {
+  content: "css eggs";
+}
+
+input {
+  position: fixed;
+  z-index: 1;
+  bottom: 50%;
+  width: 15vw;
+  height: 20vw;
+  cursor: pointer;
+  opacity: 0;
+  margin-bottom: -10vw;
+}
+
+.stage {
+  position: absolute;
+  z-index: -2;
+  width: 100vw;
+  height: 150vw;
+  perspective: 50vw;
+  transition: filter 2s;
+}
+.stage .light {
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  border-radius: 50%;
+  transform: rotateX(80deg);
+}
+
+.egg-wrapper {
+  position: relative;
+  width: 15vw;
+  height: 20vw;
+  margin: 0 0.3vw;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+}
+.egg-wrapper:not(.rotate) {
+  animation-name: move;
+  animation-duration: 3s;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: infinite;
+}
+.egg-wrapper.rotate {
+  transform: scale(1, -1);
+  z-index: -1;
+  opacity: 1;
+  margin-top: -1vw;
+  opacity: 0.25;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+.egg-wrapper .egg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #DDD;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  transform-origin: center 60% !important;
+  animation-name: wobble;
+  animation-duration: 3s;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: infinite;
+}
+.egg-wrapper .egg .fill {
+  position: absolute;
+  left: -12%;
+  top: -10%;
+  width: 130%;
+  height: 124%;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 2.5vw #FFF;
+  opacity: 0.4;
+  transition: filter 2s;
+}
+.egg-wrapper .egg .shading {
+  position: absolute;
+  left: 10%;
+  top: 27%;
+  width: 60%;
+  height: 85%;
+  background: #000;
+  border-radius: inherit;
+  transform: rotate(-20deg);
+  opacity: 0.25;
+  transition-property: filter, opacity;
+  transition-duration: 2s;
+}
+.egg-wrapper .egg .key {
+  position: absolute;
+  left: 55%;
+  top: 5%;
+  width: 35%;
+  height: 55%;
+  background: #F4F4F4;
+  border-radius: inherit;
+  transform: rotate(-20deg);
+  transition-property: filter, background;
+  transition-duration: 2s;
+}
+.egg-wrapper .egg .highlight {
+  position: absolute;
+  left: 70%;
+  top: 5%;
+  width: 20%;
+  height: 30%;
+  background: #FFF;
+  border-radius: inherit;
+  transform: rotate(-20deg);
+  transition: filter 2s;
+}
+.egg-wrapper .egg .egg-shadow {
+  position: absolute;
+  right: -33%;
+  top: 36%;
+  width: 40%;
+  height: 50%;
+  border-radius: 50%;
+  background: #000;
+  opacity: 0.2;
+  transition-property: filter, opacity;
+  transition-duration: 2s;
+  animation-name: move;
+  animation-duration: 3s;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: infinite;
+}
+.egg-wrapper .shadow {
+  position: absolute;
+  left: 8.6vw;
+  top: 3.5vw;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  perspective: 50vw;
+  transition-property: filter, opacity;
+  transition-duration: 2s;
+}
+.egg-wrapper .shadow .main {
+  position: absolute;
+  right: 0;
+  width: 400%;
+  height: 88%;
+  border-radius: inherit;
+  transform-origin: center bottom;
+  transform: rotateX(90deg) rotateZ(90deg);
+  opacity: 0.57;
+}
+.egg-wrapper .shadow .main::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #000;
+  transition: filter 2s;
+}
+.egg-wrapper .shadow .secondary {
+  position: absolute;
+  z-index: 2;
+  left: -4.8vw;
+  top: 13.5vw;
+  width: 6vw;
+  height: 6vw;
+  background: #000;
+  border-radius: 50%;
+  transform: rotateX(-66deg);
+  transition: filter 2s;
+}
+
+block:last-of-type .egg-shadow {
+  display: none;
+}
+
+input:checked ~ .stage {
+  filter: blur(8vw);
+}
+input:checked ~ .egg-wrapper .fill {
+  filter: blur(0.6vw);
+}
+input:checked ~ .egg-wrapper .shading {
+  filter: blur(3vw);
+  opacity: 0.6;
+}
+input:checked ~ .egg-wrapper .key {
+  background: #FFFFFF;
+  filter: blur(2.3vw);
+}
+input:checked ~ .egg-wrapper .highlight {
+  filter: blur(1.2vw);
+}
+input:checked ~ .egg-wrapper .egg-shadow {
+  filter: blur(2vw);
+  opacity: 0.5;
+}
+input:checked ~ .egg-wrapper .shadow {
+  filter: blur(0.5vw);
+}
+input:checked ~ .egg-wrapper .shadow .main::before {
+  filter: blur(5vw);
+}
+input:checked ~ .egg-wrapper .shadow .secondary {
+  filter: blur(2.7vw);
+}
+
+@keyframes wobble {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) rotate(8deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+  }
+}
+@keyframes move {
+  0% {
+    transform: translate(-1vw);
+  }
+  50% {
+    transform: translate(1vw);
+  }
+  100% {
+    transform: translate(-1vw);
+  }
+}
+
+  </style>
+</head>
+<body>
+    <input type="checkbox" checked="checked"/>
+    <div class="stage">
+      <div class="light"></div>
+    </div>
+    <block class="egg-wrapper">
+      <div class="shadow">
+        <div class="main"></div>
+        <div class="secondary"></div>
+      </div>
+      <div class="egg">
+        <div class="fill"></div>
+        <div class="shading"></div>
+        <div class="key"></div>
+        <div class="highlight"></div>
+        <div class="egg-shadow"></div>
+      </div>
+      <div class="egg-wrapper rotate">
+        <div class="egg">
+          <div class="fill"></div>
+          <div class="shading"></div>
+          <div class="key"></div>
+          <div class="highlight"></div>
+          <div class="egg-shadow"></div>
+        </div>
+      </div>
+    </block>
+    <block class="egg-wrapper">
+      <div class="shadow">
+        <div class="main"></div>
+        <div class="secondary"></div>
+      </div>
+      <div class="egg">
+        <div class="fill"></div>
+        <div class="shading"></div>
+        <div class="key"></div>
+        <div class="highlight"></div>
+        <div class="egg-shadow"></div>
+      </div>
+      <div class="egg-wrapper rotate">
+        <div class="egg">
+          <div class="fill"></div>
+          <div class="shading"></div>
+          <div class="key"></div>
+          <div class="highlight"></div>
+          <div class="egg-shadow"></div>
+        </div>
+      </div>
+    </block>
+    <block class="egg-wrapper">
+      <div class="shadow">
+        <div class="main"></div>
+        <div class="secondary"></div>
+      </div>
+      <div class="egg">
+        <div class="fill"></div>
+        <div class="shading"></div>
+        <div class="key"></div>
+        <div class="highlight"></div>
+        <div class="egg-shadow"></div>
+      </div>
+      <div class="egg-wrapper rotate">
+        <div class="egg">
+          <div class="fill"></div>
+          <div class="shading"></div>
+          <div class="key"></div>
+          <div class="highlight"></div>
+          <div class="egg-shadow"></div>
+        </div>
+      </div>
+    </block>
+    <div class="title"></div>
+</body>
+</html>

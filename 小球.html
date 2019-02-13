@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      height: 100vh;
+      background: #333;
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      overflow: hidden;
+    }
+
+    #Newtons-Candle {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #Newtons-Candle .content-card {
+      width: 400px;
+      height: 250px;
+      background: #FCEEB5;
+      display: flex;
+      border-radius: 5px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #Newtons-Candle .content-card .half-side {
+      width: 200px;
+      height: 250px;
+      overflow: hidden;
+      position: absolute;
+    }
+
+    #Newtons-Candle .content-card .half-side.side--left {
+      margin-left: -100px;
+      border-radius: 5px 0 0 5px;
+    }
+
+    #Newtons-Candle .content-card .half-side.side--right {
+      margin-left: 100px;
+      border-radius: 0 5px 5px 0;
+    }
+
+    #Newtons-Candle .content-card .half-side .angle-gradient {
+      width: 400px;
+      height: 400px;
+      margin-top: -75px;
+      transform-origin: center 50px;
+      animation: 0.5s infinite alternate;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #Newtons-Candle .content-card .half-side .angle-gradient.gradient--red {
+      margin-left: -10px;
+      background-image: conic-gradient(#FCEEB5, #EE786E);
+      animation-name: gradient--red;
+      animation-timing-function: ease-out;
+    }
+
+    @keyframes gradient--red {
+      from,
+      50% {
+        transform: rotate(6deg);
+      }
+      to {
+        transform: rotate(30deg);
+      }
+    }
+
+    #Newtons-Candle .content-card .half-side .angle-gradient.gradient--blue {
+      margin-left: -190px;
+      background-image: conic-gradient(#A2CCB6, #FCEEB5);
+      animation-name: gradient--blue;
+      animation-timing-function: ease-in;
+    }
+
+    @keyframes gradient--blue {
+      from {
+        transform: rotate(-30deg);
+      }
+      50%,
+      to {
+        transform: rotate(-6deg);
+      }
+    }
+
+    #Newtons-Candle .content-card .ball {
+      width: 25px;
+      height: 25px;
+      background: #FFF;
+      border-radius: 50%;
+      box-shadow: 0 0 20px 2px white;
+      position: absolute;
+    }
+
+    #Newtons-Candle .content-description {
+      width: 400px;
+      margin-top: 160px;
+      color: #FFF;
+      position: absolute;
+    }
+
+    #Newtons-Candle .content-description .description--inspiration {
+      font-size: 0.8em;
+    }
+
+    #Newtons-Candle .content-description .description--inspiration .description--hyperlink {
+      color: #EA4C89;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="Newtons-Candle">
+    <div class="content-card">
+      <div class="half-side side--left">
+        <div class="angle-gradient gradient--red">
+          <div class="ball ball--left"></div>
+        </div>
+      </div>
+      <div class="half-side side--right">
+        <div class="angle-gradient gradient--blue">
+          <div class="ball ball--right"></div>
+        </div>
+      </div>
+      <div class="ball ball--center"></div>
+    </div>
+  </div>
+</body>
+
+</html>

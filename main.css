@@ -1,0 +1,53 @@
+.color {
+  background-color: red;
+}
+
+/* .hello {
+  width: 200px;
+  animation:wcbl 5s infinite;
+}; */
+p{
+  animation: wcbl 5s infinite normal;
+  overflow: hidden;
+  height: 20px;
+  position: relative;
+}
+.text{
+  background-color: #ccc;
+  position: absolute;
+  top: 16px;
+  left: 0px;
+  width: 20px; 
+  height: 20px;
+  animation: mymove 5s infinite normal;
+}
+@keyframes wcbl{
+  0%{
+    color: blueviolet;
+    width: 0px;
+  }
+  25%{
+    color: aqua;
+    width: 50px;
+  }
+  50%{
+    color: brown;
+    width: 100px;
+  }
+  75%{
+    color: teal;
+    width: 150px;
+  }
+  100%{
+    color: darkgoldenrod;
+    width: 200px;
+  }
+}
+@keyframes mymove
+{
+0%   {top:16px; left:0px; }
+25%  {top:16px; left:40px;}
+50%  {top:16px; left:80px;}
+75%  {top:16px; left:120px;}
+100% {top:16px; left:160px;}
+}
