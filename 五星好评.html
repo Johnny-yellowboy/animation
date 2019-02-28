@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  /* 星星 */
+  .content {
+    width: 600px;
+    margin: 0px auto;
+    padding-top: 20px;
+  }
+  .block{
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-left: 50px;
+    line-height: 21px;
+  }
+  .clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+    overflow: hidden;
+    height: 0;
+  }
+  .star_score{
+    float: left;
+    background: url(images/stark2.png);
+    width: 160px;
+    height: 21px;
+    position: relative;
+  }
+  .star_score a{
+    height: 21px;
+    display: block;
+    text-indent: -999em;
+    position: absolute;
+    left: 0;
+  }
+  .star_score a:hover{
+    background: url(images/stars2.png);
+    left: 0;
+  }
+  .star_score a.clibg{
+    background: url(images/stars2.png);
+    left: 0;
+  }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div id="startone" class="block clearfix">
+      <div class="star_score"></div>
+      <p style="float: left;">您的评分: <span class="fenshu"></span>分</p>
+      <div class="attitude"></div>
+    </div>
+  </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+  $(function(){
+    function scoreFun(obj,opts){
+      // 默认
+      var defaults = {
+        a_w: 16, //每个a宽度
+        ScoreGrade: 10, //a的个数
+        types: [
+          "很不满意",
+          "差的离谱，与卖家的描述严重不符，非常不满",
+          "不满意",
+          "部分有破损，描述不符，不满意",
+          "一般",
+          "质量一般",
+          "没有卖家描述那么好",
+          "满意",
+          "质量不错，基本一致，挺满意",
+          "非常满意",
+          "很烂",
+          "烂",
+          "一般",
+          "好",
+          "非常好"
+        ],
+        nameScore : "fenshu",
+        parent: "star_score",
+        attitude : "attitude"
+      };
+      options = $.extend({}, defaults, opts);
+      // console.log(options);
+      
+      var countScore = obj.find("." + options.nameScore); //找到"fenshu"类 ，就是分数
+        // console.log(contentScore);
+      var startParent = obj.find('.' + options.parent); //找到名为"star_score" 类，就是星星
+        // console.log(startParent);
+      var atti = obj.find('.'+ options.attitude); //找到名为"attitude" 类 ，就是点击的星星
+        // console.log(atti);
+      var now_cli;
+      var fen_cli;
+      var atu;
+      var a_w = options.a_w; // 每个a宽度
+      var len = options.ScoreGrade; //a的个数赋值给len
+      startParent.width(a_w *len); //含a的div盒子宽度
+      var preA = (5/len);
+      for( var i = 0; i < len; i++ ){
+        var newSpan = $("<a herf='javascript:;'></a>");
+        newSpan.css({"left":0,"width":a_w *(i+1),"z-index":len-i}); //设置a的宽度和层级
+        newSpan.appendTo(startParent)       //将a放到startParent里或者类为star_score的div里
+      }
+      startParent.find("a").each(function(index ,ele){  //遍历每个a
+        $(this).click(function(){   //注册点击事件
+          now_cli = index;          //当前a的索引
+          show(index,$(this))       //调用自己封装的show放法
+        });
+        $(this).mouseenter(function(){
+          show(index,$(this))       //鼠标移入调用show 显示索引和a标签
+        })
+        $(this).mouseleave(function(){
+          if(now_cli >= 0 ){
+            var scor = preA * (parseInt(now_cli)+1);  //评分 
+            startParent.find('a').removeClass('clibg');     
+            startParent.find('a').eq(now_cli).addClass('clibg'); //选择当前的a，加上移入的类
+            var ww = a_w * (parseInt(now_cli)+1); //当前a的宽度
+            startParent.find('a').eq(now_cli).css({"width":ww,"left": 0})  //给当前的a加上宽度
+            if(countScore){
+              countScore.text(scor)
+            }
+          }else{
+            startParent.find('a').removeClass('clibg');
+            if(countScore){
+              countScore.text(" ")
+            }
+          }
+        })
+      });
+
+      // show方法
+      function show(num ,object){
+        var n = parseInt(num) +1; //当前索引
+        var lefta = num * a_w;  //每个a宽度
+        var ww = a_w * n;       //当前a的宽度 
+        var scor = preA * n;  //评分
+        (len > 5) ? atu = options.types[parseInt(num)] : atu = options.types[parseInt(num) + 10];   //用户的评分感受
+        obj.find('a').removeClass('clibg');  //清楚所有a的clibg类
+        object.addClass('clibg');
+        object.css({"width":ww,"left":0});
+        countScore.text(scor);
+        atti.text(atu);
+      }
+    }
+    scoreFun($("#startone"));
+  })
+</script>
+</html>

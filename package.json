@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "heatmap.js": "^2.0.5",
     "jquery": "^3.3.1",
     "less": "^3.9.0"

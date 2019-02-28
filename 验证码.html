@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="can" width="120" height="40" style="border: 3px solid #555555;">
+		
+		</canvas>
+		<script>
+			var can=document.getElementById("can");
+			var con=can.getContext('2d');
+			
+			//随机生成从最小值到最大值的一组数字
+			function rand(min,max) {
+		        return Math.floor(Math.random()*(max-min))+min;
+		    }
+			//随机显示一根线条
+	        function drawline(canvas, context) { 
+	        		context.beginPath();
+	                //起点与终点在canvas宽高内随机
+	                context.moveTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height));  
+	                context.lineTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height));  
+	                context.lineWidth = 1;	                
+	                context.strokeStyle = '#275DB3';	       
+	                context.stroke();  
+	        }
+	        linesum();
+	        //循环显示多条线条
+	        function linesum(){
+	       		//每次调用该方法填充一次颜色覆盖之前的
+       	 		con.fillStyle='white';
+				//填充一个矩形 x,y坐标，x,y宽度
+				con.fillRect(0,0,can.width,can.height);
+		       	for (var i=0;i<20;i++) {
+			       	drawline(can, con);
+			    }
+		    }
+	        //验证码
+	        function code(){
+		       	var randnum=rand(1000,9999);				
+				//居中
+				con.textAlign = "center";
+				con.font="25px 宋体";
+				con.fillStyle="red";
+				con.fillText(randnum,60,30);
+	        }
+	        code();
+	        //点击触发函数
+			can.onclick=function(){
+				linesum();
+				code();
+			}
+			
+		</script>
+	</body>
+</html>

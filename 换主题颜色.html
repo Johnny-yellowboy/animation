@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+  <style>
+    div section{ 
+        width: 30px; 
+        height: 30px; 
+        margin: 10px; 
+        display: inline-block; 
+    }
+    div section:nth-of-type(1){ 
+        background-color: #177cb0; 
+    }
+    div section:nth-of-type(2){ 
+        background-color: #db5a6b; 
+    }
+    div section:nth-of-type(3){ 
+        background-color: #008000; 
+    }
+    div section:nth-of-type(4){ 
+        background-color: #FF6600; 
+    }
+    div section:nth-of-type(5){ 
+        background-color: #FFFF33; 
+    }
+    div section:nth-of-type(6){ 
+        background-color: #999999; 
+    }
+
+    div section:hover{ 
+        cursor:pointer;
+    }
+    #calc{
+      width: 100px;
+      height: 40px;
+      border: none;
+      border-radius: 6px;
+    }
+</style>
+<body>
+  <div>
+    <section onclick="blue()"></section>
+    <section onclick="red()"></section>
+    <section onclick="green()"></section>
+    <section onclick="orange()"></section>
+    <section onclick="yellow()"></section>
+    <section onclick="gray()"></section>
+  </div>
+  
+    <center>
+      <h2 style="display:inline-block;">颜色主题jquery变换</h2>
+        <form action="" id="simpleCalc">
+          <span>input：</span><input type="text" required><br><br>
+          <button id="calc">确认</button>
+        </form>
+        <span id="result"></span>
+      </center>
+      
+    <script type="text/JavaScript" src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      //设置默认颜色主题
+        $(document).ready(function(){
+            blue();
+        });
+        // 点击单个换色
+        function blue(){
+            change("#177cb0");
+        }
+
+        function red(){
+            change("#db5a6b");
+        }
+
+        function green(){
+            change("#008000");
+        }
+
+        function orange(){
+            change("#FF6600");
+        }
+
+        function yellow(){
+            change("#FFFF33");
+        }
+
+        function gray(){
+            change("#999999");
+        }
+
+
+        //设置需要改变颜色的元素及其样式
+        function change(colo){
+            $("#calc").css("background-color", colo);
+            $("h2, span").css("color", colo);
+            $("input").css("color", colo);
+            $("input[type=text]").focus(function(){$(this).css("outline", "none")});
+            $("input[type=text]").focus(function(){$(this).css("border", "2px solid " + colo)});
+            $("input[type=text]").blur(function(){$(this).css("border", "1px solid gray")});
+        }
+    </script>
+</body>
+</html>
