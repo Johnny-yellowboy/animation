@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  canvas{
+    border: 1px solid #000;
+  }
+  </style>
+</head>
+<body>
+  <canvas width="800" height="400">
+
+  </canvas>
+</body>
+<script>
+var canvas = document.querySelector('canvas');
+console.log(canvas);
+//获取上下文 工具箱
+var ctx = canvas.getContext('2d');
+//取工具
+// 移动画笔moveTo
+// ctx.moveTo(100,100);
+ctx.moveTo(200,100);
+// 绘制直线lineTo(只是一个轨迹路径)
+ctx.lineTo(200,200);
+ctx.lineTo(100,200);
+ctx.lineTo(100,100);
+ctx.lineTo(200,100);
+ctx.lineTo(100,200);
+ctx.lineTo(100,100);
+ctx.lineTo(200,200);
+ctx.lineTo(300,100);
+ctx.lineTo(300,200);
+ctx.lineTo(330,80);
+ctx.lineTo(440,92);
+ctx.lineTo(520,120);
+ctx.lineTo(630,20);
+ctx.lineTo(700,80);
+ctx.lineTo(800,380);
+//描边stroke
+ctx.stroke();
+</script>
+</html>

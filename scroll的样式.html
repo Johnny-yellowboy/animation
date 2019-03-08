@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      width: 300px;
+      height: 200px;
+      background: rgb(0, 0, 0);
+      overflow: auto;
+      color: aliceblue;
+      text-align: center;
+    }
+    /* 谷歌滚动条自定义 */
+    .first_box::-webkit-scrollbar {   /*滚动条整体部分*/
+      width: 10px;  
+      height:10px;
+      background-color:#ffffff;
+    }  
+    .first_box::-webkit-scrollbar-track{       /*scroll轨道背景*/
+      -webkit-box-shadow: inset 0 0 6px rgba(187, 187, 187, 0.3);  
+      border-radius: 5px; 
+      background-color:rgb(255, 255, 255);    
+    }
+    .first_box::-webkit-scrollbar-track-piece{  /*除了滚外部的颜色，其实要第一个就行了'b*/
+      background-color: rgb(255, 255, 255);
+    }
+    .first_box::-webkit-scrollbar-button{    /*滚动条两端的按钮，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置2）*/
+      background: #ffffff;
+    }
+    .first_box::-webkit-scrollbar-thumb{ /*滚动条中能上下移动的小块*/
+      width: 10px;  
+      height:5px;  
+      border-radius: 10PX;  
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+      background-color:#979797;
+    } 
+    /* ie滚动条自定义，好像无法设置宽高 */
+    .first_box{
+      scrollbar-arrow-color: rgb(255, 255, 255); /*三角箭头的颜色*/
+      scrollbar-face-color: rgb(162, 162, 162); /*立体滚动条的颜色（包括箭头部分的背景色）*/
+      scrollbar-3dlight-color: #059b05; /*立体滚动条亮边的颜色*/
+      scrollbar-highlight-color: #0091ff; /*滚动条的高亮颜色（左阴影？）*/
+      scrollbar-shadow-color: rgba(126, 126, 126, 0.3); /*立体滚动条阴影的颜色*/
+      scrollbar-darkshadow-color: rgba(0,0,0,0.3); /*立体滚动条外阴影的颜色*/
+      scrollbar-track-color: rgb(255, 255, 255); /*立体滚动条背景颜色*/
+      scrollbar-base-color:rgb(255, 255, 255); /*滚动条的基色*/
+    }
+    /* 火狐滚动条自定义 */
+    .first_box {
+      overflow-y: scroll;
+      scrollbar-color: #979797 rgb(255, 255, 255);   /* 第一个是滚动块的颜色，第二个是滚动条背景的颜色 dark为黑色滚动条，light为浅色滚动条 */
+      scrollbar-width: thin; /* 瘦的滚动块，会连箭头都消失。值为none隐藏滚动块但仍可以滚动。auto为默认宽度*/
+    }
+  </style>
+</head>
+<body>
+  <div class="first_box">
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+   <p>洼地撒大那时的</p>
+  </div>
+</body>
+</html>
