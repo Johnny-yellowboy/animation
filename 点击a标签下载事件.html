@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .download {
+        display: block;
+        width: 200px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        margin: 100px auto;
+        background: slateblue;
+        color: azure;
+        text-decoration: none;
+        border-radius: 10px;
+      }
+      .download:hover {
+        background: steelblue;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="./importBatchDemo.xls" download="importBatchDemo.xls" class="download">点击下载文件</a>
+    <p>点击下载图片</p>
+    <a href="./images/u=2229738757,693775443&fm=27&gp=0.jpg" download="shenme.jpg">
+    <img src="./images/u=2229738757,693775443&fm=27&gp=0.jpg" alt="shenme" width="200px" height="150px">
+    </a>
+    <div>
+      <p>点击图片可下载</p>
+        <img src="./images/u=2229738757,693775443&fm=27&gp=0.jpg" alt="" id="download">
+    </div>
+  </body>
+  <script src="jquery-3.2.1.min.js"></script>
+  <script>
+       $('#download').click(function(){
+        var url = $(this).attr('src')
+        window.open(url)
+    })
+  </script>
+</html>
