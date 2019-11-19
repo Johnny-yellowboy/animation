@@ -1,0 +1,284 @@
+.container{
+  width: 100%;
+  /* height: 2000px; */
+  /* background-color: firebrick; */
+  min-width: 320px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.header{
+  width: 100%;
+  height: 40px;
+  min-width: 320px;
+  /* 给header设置最大宽,input就不会溢出父盒子了 */
+  max-width: 640px;
+  background-color:rgba(0,0,0,0);
+  padding-left: 75px;
+  padding-right: 50px;
+  position: fixed;
+  z-index: 888;
+}
+.header .logo{
+  width: 58px;
+  height: 24px;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+}
+.header .logo a{
+  display: block;
+  width: 58px;
+  height: 24px;
+  position: absolute;
+  background-position: 0 -108px;
+}
+.header .search{
+  padding-top: 5px;
+  position: relative;
+}
+.header .search .search_icon{
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background-position: -60px -110px;
+}
+.header .search input{
+  width: 100%;
+  height: 30px;
+  padding-left: 40px;
+  border-radius: 15px;
+}
+.header .login {
+  width: 50px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}
+.header .login a{
+  display: block;
+  width: 50px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+}
+
+.banner{
+  position: relative;
+  overflow: hidden;
+}
+.banner ul{
+  width: 1000%;
+  /* 先让他左移一个li,显示第一张 */
+  transform: translateX(-10%);
+}
+
+.banner ul li{
+  float: left;
+  width: 10%;
+}
+
+.banner ol{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.banner ol li{
+  float: left;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin: 0 6px;
+}
+.banner ol li.current{
+  background-color: #fff;
+}
+
+
+
+
+
+
+
+.nav li{
+  float: left;
+  width: 20%;
+}
+.nav li a{
+  display: block;
+  padding: 10px 0;
+}
+.nav img{
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+}
+.nav li p{
+  text-align: center;
+}
+
+
+.news{
+  height: 30px;
+  margin: 10px;
+  border-radius: 6px;
+  background-color: #fff;
+  position: relative;
+  padding-left: 82px;
+  padding-right: 40px;
+  overflow: hidden;
+}
+.news .logo{
+  width: 82px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.news .logo a{
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: 6px;
+}
+.news .logo a img{
+  width: 73px;
+  height: 16px;
+}
+.news .more{
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.news .more a{
+  display: block;
+  text-align: center;
+  line-height: 30px;
+}
+.news .info {
+  width: 100%;
+  height: 30px;
+}
+
+.news .info li{
+  line-height: 30px;
+  padding-left: 10px;
+}
+.news .info li a{
+  display: block;
+}
+
+
+
+
+
+.seckill {
+  width: 100%;
+  height: 30px;
+  background-color: #fff;
+}
+.seckill .clock{
+  position: relative;
+  padding-left: 30px;
+}
+.seckill .clock i{
+  display: block;
+  width: 20px;
+  height: 22px;
+  background-position:  -83px -109px;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+}
+.seckill .clock span{
+  color: #F23030;
+   line-height: 30px;
+}
+.seckill .info{
+  padding-left: 6px;
+  padding-top: 6px;
+}
+.seckill .info span{
+  line-height: 18px;
+  float: left;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+}
+.seckill .info span:nth-child(2n-1){
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+.seckill .more a{
+  display: block;
+  padding: 0px 10px;
+  line-height: 30px;
+}
+
+.seckill_content{
+  padding-top: 10PX;
+  overflow: hidden;
+  background-color: #fff;
+}
+.seckill_content li{
+  width: 87px;
+  float: left;
+  border-right: 1px solid #ccc;
+}
+.seckill_content li:last-child{
+  border-right: none;
+}
+.seckill_content li img{
+  width: 60px;
+  height: 60px;
+  margin: 0  auto;
+}
+.seckill_content li p{
+  text-align: center;
+}
+.seckill_content li .price{
+  color: #F23030;
+  font-weight: bold;
+}
+.seckill_content li .oldprice{
+  text-decoration: line-through;
+}
+
+.mian li{
+  float: left;
+  width: 33.3%;
+}
+.mian li a{
+  display: block;
+}
+.products ul li a{
+  display: block;
+}
+.products ul:nth-child(1) li{
+
+  float: left;
+  width: 33.3%;
+}
+.products ul:nth-child(2) li{
+
+  float: left;
+  width: 50%;
+}
+.products ul:nth-child(3) li{
+
+  float: left;
+  width: 50%;
+}

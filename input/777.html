@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/css.css">
+</head>
+<body>
+  <div class="row">
+    <div class="big">
+      <div class="dropdown-mul-2 dropdown-multiple">
+        <select style="display:none" name="" id="" >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <a href="javascript:;" class="dropdown-display">
+          <span class="dropdown-chose-list">
+            <span class="dropdown-num">
+              <i class="del" data-id="1"></i>
+            </span>
+            <span class="dropdown-selected">请选择
+              <i class="del" data-id="3"></i>
+            </span>
+          </span>
+        </a>
+        <a href="javascript:;" class="dropdown-clear-all">×</a>
+        <div class="dropdown-main">
+            <span class="dropdown-search"><input type="text" maxlength="20" placeholder="请输入搜索"></span>
+          <ul>
+            <li tabindex="0" data-value="1" class="dropdown-option dropdown-chose">1</li>
+            <li tabindex="0" data-value="2" class="dropdown-option ">2</li>
+            <li tabindex="0" data-value="3" class="dropdown-option">3</li>
+            <li disabled="" data-value="4" class="dropdown-option ">4</li>
+            <li tabindex="0" data-value="5" class="dropdown-option ">5</li>
+            <li tabindex="0" data-value="6" class="dropdown-option ">6</li>
+            <li tabindex="0" data-value="7" class="dropdown-option ">7</li>
+            <li tabindex="0" data-value="8" class="dropdown-option ">8</li>
+            <li tabindex="0" data-value="9" class="dropdown-option">9</li>
+            <li disabled="" data-value="10" class="dropdown-option ">10</li>
+            <li tabindex="0" data-value="11" class="dropdown-option ">11</li>
+            <li tabindex="0" data-value="12" class="dropdown-option ">12</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="http://test-resource-ng.ouyeel.com/statics/public2/js/core/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  $(function () {
+    $('.dropdown-display').click(function () {
+      $('.dropdown-main').show();
+    })
+    var lis = $('.dropdown-option');
+    var ops = $('option');
+    console.log(lis);
+    console.log(ops);
+    lis.each(function () {
+      $(this).on("click", function () {
+        $('.dropdown-selected').hide();
+        var select_num = $(this).text();
+        var num = $('.dropdown-num').text();
+        console.log(select_num);
+        $('.dropdown-num').text(select_num)
+        $('.dropdown-main').hide();
+        $('option').attr("selected", "");
+        $('option').eq(select_num - 1).attr("selected", "selected");
+      })
+    })
+  })
+</script>
+</html>

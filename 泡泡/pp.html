@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+  <div class="heart " id="like1" rel="like"></div>
+  <script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  $('#like1').on('click',function(){
+    $(this).addClass('heartAnimation')
+  })
+  $('#like1').on('mousedown',function(){
+    $(this).removeClass('heartAnimation')
+  })
+  </script>
+</body>
+</html>
