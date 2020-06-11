@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .scroll_div {
+      width: 1000px;
+      overflow: hidden;
+      white-space: nowrap;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .scroll_begin,
+    .scroll_end {
+      display: inline;
+    }
+  </style>
+
+  <body>
+    <div class="scroll_div">
+      <div class="scroll_begin">
+        <span class="pad_right">
+          平台在您的单价基础上对不同品种收取服务费：结算：彩涂-5元/吨（向买家收取），钢筋-5元/吨（向买家收取），普冷-5元/吨（向买家收取）， 热轧-5元/吨（向买家收取），工业线材-5元/吨（向买家收取），热镀锌-5元/吨（向买家收取），普线-5元/吨（向买家收取），
+          粉煤灰-5元/吨（向买家收取），钢渣-5元/吨（向买家收取），矿渣微粉-5元/吨（向买家收取），水渣-5元/吨（向买家收取）， 氧化铁皮-5元/吨（向买家收取），方坯-5元/吨（向买家收取），热轧不锈钢卷-5元/吨（向买家收取），中厚板-5元/吨（向买家收取），
+          板坯-5元/吨（向买家收取），热轧棒钢-5元/吨（向买家收取），酸洗不锈钢卷-5元/吨（向买家收取），废钢-5元/吨（向买家收取）， 热轧高压锅炉管-5元/吨（向买家收取），热轧普管-5元/吨（向买家收取），H型钢-5元/吨（向买家收取），方管-5元/吨（向买家收取），
+          冷轧不锈钢卷-5元/吨（向买家收取），其他00-5元/吨（向买家收取），钢锭-5元/吨（向买家收取），镀铝-5元/吨（向买家收取）， 不锈钢盘条-5元/吨（向买家收取），热轧品种管-5元/吨（向买家收取），线材制品-5元/吨（向买家收取），高速线材-5元/吨（向买家收取）， 电镀锌-5元/吨（向买家收取），镀铝硅-5元/吨（向买家收取）。
+          成交前仓储费及杂费由供应商承担。
+        </span>
+      </div>
+      <div class="scroll_end"></div>
+    </div>
+    <div id="txt">搜索s%，。</div>
+    <script>
+      //文字横向滚动
+      function ScrollImgLeft() {
+        var speed = 50 //初始化速度 也就是字体的整体滚动速度
+        var MyMar = null //初始化一个变量为空 用来存放获取到的文本内容
+        // var scroll_begin = document.getElementById('scroll_begin') //获取滚动的开头id
+        // var scroll_end = document.getElementById('scroll_end') //获取滚动的结束id
+        // var scroll_div = document.getElementById('scroll_div') //获取整体的开头id
+        var scroll_end = document.querySelector('.scroll_end') //获取滚动的结束id
+        var scroll_begin = document.querySelector('.scroll_begin') //获取滚动的开头id
+        var scroll_div = document.querySelector('.scroll_div') //获取整体的开头id
+        console.log(scroll_div)
+
+        scroll_end.innerHTML = scroll_begin.innerHTML //滚动的是html内部的内容,原生知识!
+        //定义一个方法
+        function Marquee() {
+          if (scroll_end.offsetWidth - scroll_div.scrollLeft <= 0) scroll_div.scrollLeft -= scroll_begin.offsetWidth
+          else scroll_div.scrollLeft++
+        }
+        MyMar = setInterval(Marquee, speed) //给上面的方法设置时间  setInterval
+        //鼠标点击这条公告栏的时候,清除上面的方法,让公告栏暂停
+        scroll_div.onmouseover = function () {
+          clearInterval(MyMar)
+        }
+        //鼠标点击其他地方的时候,公告栏继续运动
+        scroll_div.onmouseout = function () {
+          MyMar = setInterval(Marquee, speed)
+        }
+      }
+      // ScrollImgLeft()
+      var txt = document.getElementById('txt').innerText.length
+      console.log(txt)
+    </script>
+  </body>
+</html>
