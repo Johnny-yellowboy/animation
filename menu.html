@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta timerset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 145px;
+        height: 280px;
+        margin-left: 10px;
+        float: left;
+        border-radius: 5px;
+        /* margin-bottom: 10px; */
+        box-sizing: border-box;
+        /* background-color: #000; */
+        color: gainsboro;
+        text-align: center;
+      }
+      .big {
+        width: 1000%;
+        position: absolute;
+        left: -155px;
+      }
+      .super-big {
+        width: 470px;
+        height: 300px;
+        max-height: 300px;
+        margin: 0px auto;
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+      }
+      .left,
+      .right {
+        width: 60px;
+        height: 60px;
+        background-color: blueviolet;
+        position: absolute;
+        top: 45%;
+      }
+      .left {
+        left: 30px;
+      }
+      .right {
+        right: 30px;
+      }
+      .a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        color: #000;
+        margin: 50px auto;
+        background-color: rgb(28, 154, 238);
+      }
+      .text {
+        opacity: 0;
+      }
+      .box.current .a {
+        animation: tob 1s 1 forwards;
+      }
+      /* .box.prev .a {
+        margin-left: 20px;
+      }
+      .box.next .a {
+        margin-right: 20px;
+      } */
+      .box.current .text {
+        font-size: 20px;
+        color: brown;
+        animation: oo 1s 1 forwards;
+      }
+
+      @keyframes oo {
+        form {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes move {
+        form {
+          left: 10px;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes tob {
+        form {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="super-big">
+      <div class="big">
+        <div class="box">
+          <div class="a">6</div>
+          <div class="text">6666666666</div>
+        </div>
+        <div class="box prev">
+          <div class="a">1</div>
+          <div class="text">111111111</div>
+        </div>
+        <div class="box current">
+          <div class="a">2</div>
+          <div class="text">222222222</div>
+        </div>
+        <div class="box next">
+          <div class="a">3</div>
+          <div class="text">333333333</div>
+        </div>
+        <div class="box">
+          <div class="a">4</div>
+          <div class="text">4444444444</div>
+        </div>
+        <div class="box">
+          <div class="a">5</div>
+          <div class="text">555555555</div>
+        </div>
+        <div class="box">
+          <div class="a">6</div>
+          <div class="text">6666666666</div>
+        </div>
+        <div class="box">
+          <div class="a">1</div>
+          <div class="text">111111</div>
+        </div>
+      </div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </body>
+  <script src="http://test-resource-ng.ouyeel.com/statics/public2/js/core/jquery.min.js?v=20191225054142"></script>
+  <script>
+    // $(".big").on("click", ".box", function () {
+    //   var h = $(".box").outerHeight(true);
+    //   var clk = $(this).index();
+    //   // console.log("现在点击的是" + clk);
+    //   var cur_idx = $(".box.current").index();
+    //   var time = clk - cur_idx;
+    //   console.log("相差" + time);
+
+    //   if (time > 0) {
+    //     for (var i = 0; i < time; i++) {
+    //       console.log("下" + i);
+    //       var first = $(".box:first");
+    //       $(".big").append(first.remove());
+    //     }
+    //   } else {
+    //     time = Math.abs(time);
+    //     for (var i = 0; i < time; i++) {
+    //       console.log("上" + i);
+    //       var last = $(".box:last");
+    //       $(".big").prepend(last.remove());
+    //     }
+    //   }
+    //   $(".box").eq(3).addClass("current").siblings().removeClass("current");
+    // });
+
+    $(".right").click(function () {
+      var w = $(".box").width();
+      var cu = $(".box.current").index();
+      var m = 10 * cu;
+      if (cu == $(".box").length - 2) {
+        // $(".big").css("left", 0);
+        $(".big").animate({ left: w }, 0, function () {
+          $(".big").animate({ left: 0 }, 300);
+        });
+        cu = 0;
+      } else {
+        var left = -w * cu - m;
+        $(".big").animate({
+          left,
+        });
+      }
+      $(".box")
+        .eq(cu + 1)
+        .addClass("current").fadeIn()
+        .siblings(".box")
+        .removeClass("current");
+      $(".box")
+        .eq(cu + 1).prev()
+        .addClass("prev")
+        .siblings(".box")
+        .removeClass("prev");
+      $(".box")
+        .eq(cu + 1).next()
+        .addClass("next")
+        .siblings(".box")
+        .removeClass("next");
+    });
+    $(".left").click(function () {
+      var w = $(".box").width();
+      var cu = $(".box.current").index();
+      var m = 10 * (cu - 2);
+      var le = $(".big").position().left;
+      // console.log(le);
+      // console.log(cu);
+      var nn = ($(".box").length - 2) * (w + 10) - 155;
+      console.log(nn);
+
+      if (cu == 1) {
+        // $(".big").css("left", -nn);
+        $(".big").animate({ left: -nn - w }, 0, function () {
+          $(".big").animate({ left: -nn }, 300);
+        });
+        cu = $(".box").length - 1;
+      } else if (cu > 1) {
+        $(".big").animate({
+          left: -w * (cu - 2) - m,
+        });
+      }
+      $(".box")
+        .eq(cu - 1)
+        .addClass("current")
+        .siblings(".box")
+        .removeClass("current");
+    });
+    $(".box .a").on("click", function () {
+      var i = $(this).closest(".box").index();
+      var cu = $(".box.current").index();
+      if (i > cu) {
+        $(".right").click();
+      }
+      if (i < cu) {
+        $(".left").click();
+      }
+    });
+  </script>
+</html>
