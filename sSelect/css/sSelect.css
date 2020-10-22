@@ -1,0 +1,99 @@
+.search-select {
+  position: relative;
+  width: 120px;
+  display: inline-block;
+}
+.search-select input[type='text'] {
+  width: 100%;
+  height: 24px !important;
+  box-sizing: border-box;
+}
+.search-select .search-con {
+  top: 24px;
+  border: solid 1px #ddd;
+  border-top: none;
+  background: #fff;
+  z-index: 2;
+  padding: 5px 10px;
+  max-height: 210px;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-transition: all ease-out 0.3s;
+  transition: all ease-out 0.3s;
+}
+.search-select .search-con ul {
+  position: relative;
+}
+.search-select .search-con li {
+  height: 24px;
+  font-size: 12px;
+  padding: 0 10px;
+  line-height: 24px;
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: all ease-out 0.3s;
+  transition: all ease-out 0.3s;
+  color: #666;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.search-select .search-con li:hover {
+  background-color: #ed1b23;
+  color: #fff;
+  z-index: 2;
+}
+.search-select .search-con li.current {
+  background-color: #9a1818;
+  color: #fff;
+  z-index: 2;
+}
+.search-select .search-con li.notfind {
+  color: #ed1b23;
+  white-space: pre-wrap;
+  height: auto;
+  line-height: 20px;
+}
+.search-select .search-con li.notfind:hover {
+  background-color: #fff;
+}
+.search-select .search-con li.notfind .filter-name {
+  color: #333;
+}
+.search-select .select-scroll {
+  position: absolute;
+  top: 5%;
+  right: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  background: #e6e6e6 \0;
+  *background: #e6e6e6;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  z-index: 100;
+  overflow: hidden;
+}
+.search-select .select-scroll .select-scroll-bar {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  background: #a2a2a2 \0;
+  *background: #a2a2a2;
+  border-radius: 10px;
+}
+.search-select .select-scroll:hover {
+  background: rgba(0, 0, 0, 0.4);
+  background: #b3b3b3;
+}
+.search-select .search-null {
+  background: #fff2e8;
+  line-height: 20px;
+  font-size: 12px;
+  border: solid 1px #ed1b23;
+  padding: 5px 10px;
+  position: relative;
+  z-index: 10;
+  color: #666;
+}

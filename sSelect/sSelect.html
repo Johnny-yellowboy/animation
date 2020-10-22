@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/public.css" />
+    <link rel="stylesheet" type="text/css" href="./css/ui.css" />
+    <!-- 下拉搜索css -->
+    <link rel="stylesheet" href="./css/sSelect.css" />
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="wrap_1200 bg_white">
+      <div>
+        <div class="search-select" id="one" style="width: 130px;">
+          <input type="text" placeholder="请选择" />
+        </div>
+        <div class="search-select" id="two">
+          <input type="text" placeholder="请输入" />
+        </div>
+      </div>
+      <div style="margin-top: 30px;">
+        <div class="search-select" id="three">
+          <input type="text" placeholder="请输入" />
+        </div>
+      </div>
+      <a id="asynBtn" href="javascript:void(0)" data-toggle="tooltip" data-trigger="hover" data-asyn="true">异步加载</a>
+      <!-- <span class="eee fr" title="qwqwqw" data-placement="bottom" data-toggle="tooltip">你说阿瓦打</span> -->
+      <!-- <a id="asynBtn" data-placement="bottom" href="javascript:void(0)" data-toggle="tooltip" data-trigger="hover" data-asyn="true">异步加载</a> -->
+      <script></script>
+    </div>
+    <script src="./mock.js"></script>
+    <script src="./sSelect.js"></script>
+    <script>
+      $(function () {
+        var xxx = [
+          {
+            value: 'sSelect',
+          },
+          {
+            value: 'SQ00',
+          },
+          {
+            value: 'BH40',
+          },
+          {
+            value: '而范围覆盖',
+          },
+          {
+            value: '阿瓦达',
+          },
+          {
+            value: '安慰对方',
+          },
+          {
+            value: '3rawd',
+          },
+          {
+            value: '啊如果让',
+          },
+          {
+            value: 'for',
+          },
+          {
+            value: 'ten',
+          },
+        ]
+        var data2 = [
+          {
+            value: 'first',
+          },
+          {
+            value: 'SQ00',
+          },
+          {
+            value: 'BH40',
+          },
+          {
+            value: '我很我很长我很长我很长长',
+          },
+          {
+            value: 'BE10',
+          },
+          {
+            value: 'E529',
+          },
+          {
+            value: 'SN20',
+          },
+          {
+            value: 'BH60',
+          },
+          {
+            value: 'SQ00',
+          },
+          {
+            value: 'BH90',
+          },
+          {
+            value: 'E500',
+          },
+          {
+            value: 'SR22',
+          },
+          {
+            value: 'BH340',
+          },
+          {
+            value: 'SQ00',
+          },
+          {
+            value: 'lastone',
+          },
+        ]
+        $('#one').sSelect({
+          // data: data,
+          filter: true,
+          // updateData: xxx,
+          // onSelect: function (val) {
+          //   console.log('被选中的' + val)
+          //   $('#sSelect').find('input').addClass('error')
+          // },
+        })
+        var news = [
+          {
+            value: 'new',
+          },
+          {
+            value: 'new1',
+          },
+          {
+            value: 'new2',
+          },
+          {
+            value: 'new3',
+          },
+          {
+            value: 'new4',
+          },
+          {
+            value: 'new5',
+          },
+          {
+            value: 'new6',
+          },
+          {
+            value: 'new7',
+          },
+          {
+            value: 'new8',
+          },
+          {
+            value: '奥收到',
+          },
+        ]
+        $('#two').sSelect({
+          data: data2,
+        })
+        $('#two').sSelect({
+          data: data2,
+          updateData: news,
+          onSelect: function (val) {
+            // console.log('被选中的' + val)
+          },
+        })
+        var Random = Mock.Random
+        var json = Mock.mock({
+          'demodata|6-31': [
+            {
+              'id|+1': 1,
+              value: function () {
+                return Random.last() + Random.string('number', 3)
+              },
+            },
+          ],
+        })
+        console.log(json.demodata)
+        var demodata = json.demodata
+        $('#three').sSelect({ data: demodata })
+      })
+    </script>
+  </body>
+</html>

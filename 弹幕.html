@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8" />
+  <head>
+    <title>不重叠弹幕实现demo</title>
+  </head>
+  <style type="text/css">
+    .dom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+    .dom > div {
+      position: absolute;
+      max-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.32);
+      color: #fff;
+      padding: 1px 15px;
+      white-space: nowrap;
+    }
+  </style>
+  <script type="text/javascript">
+    function Barrage(obj, dom, row, colPoint, maxWidth) {
+      this.value = obj.value
+      this.curRow = Math.ceil(row * Math.random()) - 1
+      console.log(this.curRow)
+      let itemHeight = 120
+      let domWidth = dom.offsetWidth
+      this.y = this.curRow * itemHeight + 20
+      if (colPoint[this.curRow] && colPoint[this.curRow] > domWidth) {
+        this.x = colPoint[this.curRow] + Math.random() * maxWidth
+      } else {
+        this.x = domWidth + Math.random() * maxWidth
+      }
+
+      colPoint[this.curRow] = this.x + maxWidth
+      this.params = obj
+      this.id = obj.id
+      let item = null
+      this.draw = function () {
+        if (!item) {
+          let fragment = document.createDocumentFragment()
+          let div = document.createElement('div')
+          div.setAttribute('id', this.id)
+          div.innerHTML = obj.value
+          fragment.append(div)
+          dom.append(fragment)
+          item = document.getElementById(this.id)
+        }
+        item.style.left = this.x + 'px'
+        item.style.top = this.y + 'px'
+      }
+    }
+
+    function DomBarrage(dom, onRemove) {
+      this.store = {}
+      this.colPoint = {}
+      this.dom = dom
+      this.onRemove = onRemove
+      this.row = Math.floor(dom.offsetHeight / 120)
+      this.offset = 0
+    }
+    DomBarrage.prototype.draw = function () {
+      for (let index in this.store) {
+        let barrage = this.store[index]
+        if (!barrage) return
+        barrage.x -= 2
+        if (barrage.x < -300) {
+          let curDom = document.getElementById(barrage.id)
+          curDom && curDom.parentNode.removeChild(curDom)
+          delete this.store[index]
+          this.onRemove(barrage, this.store)
+        }
+        barrage.draw()
+      }
+    }
+    DomBarrage.prototype.render = function () {
+      this.draw()
+      requestAnimationFrame(this.render.bind(this))
+      this.offset = this.offset + this.speed
+    }
+    DomBarrage.prototype.init = function (data) {
+      data.forEach((obj) => {
+        if (!this.store[obj.id]) {
+          this.store[obj.id] = new Barrage(obj, this.dom, this.row, this.colPoint, 300)
+        }
+      })
+      this.render()
+    }
+    DomBarrage.prototype.add = function (obj) {
+      for (let key in this.colPoint) {
+        this.colPoint[key] = this.colPoint[key] - this.offset
+      }
+      this.offset = 0
+      if (obj.id && !this.store[obj.id]) {
+        this.store[obj.id] = new Barrage(obj, this.dom, this.row, this.colPoint, 300)
+      }
+    }
+  </script>
+  <body>
+    <div class="dom"></div>
+  </body>
+  <script type="text/javascript">
+    var dom = document.getElementsByClassName('dom')[0]
+    var list = []
+    for (var i = 0; i < 40; i++) {
+      list.push({
+        id: i + 1,
+        value: '我是弹幕' + i,
+      })
+    }
+
+    var domBarrage = new DomBarrage(dom, remove.bind(this))
+    domBarrage.init(list)
+    function remove(barrage, store) {
+      domBarrage.add(barrage.params)
+    }
+  </script>
+</html>
